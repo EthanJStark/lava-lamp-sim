@@ -34,10 +34,11 @@
   let H = 1;
   let DPR = 1;
   // The glass spans y in [GLASS_TOP, GLASS_BOT] inside the lamp box.
-  // Hardware (cap, base) lives above/below that range. Proportions match a
-  // classic Lava-brand lamp: ~8% cap, ~60% glass, ~32% base.
+  // Hardware (cap, base) lives above/below that range. The base is
+  // intentionally compressed so the glass dominates the viewport: ~8% cap,
+  // ~73% glass, ~19% base.
   const GLASS_TOP = 0.08;
-  const GLASS_BOT = 0.68;
+  const GLASS_BOT = 0.81;
   let lamp = { x: 0, y: 0, w: 1, h: 1, aspect: 0.42 };
   let imageData = null;
 
@@ -147,10 +148,10 @@
     canvas.height = H;
     ctx.setTransform(1, 0, 0, 1, 0, 0);
 
-    // The full lamp box includes base and cap hardware. Reference proportions
-    // from a classic Lava-brand 14.5" lamp: ~4:1 total height-to-base-width.
-    const lampHeight = Math.min(H * 0.94, W * 2.6);
-    const lampWidth = lampHeight * 0.30;
+    // Wider aspect than a real lamp — this page is about watching the lava,
+    // so the glass takes priority over silhouette fidelity.
+    const lampHeight = Math.min(H * 0.94, W * 2.0);
+    const lampWidth = lampHeight * 0.39;
     lamp = {
       w: lampWidth,
       h: lampHeight,
@@ -527,14 +528,14 @@
 
     const topConeRTop = glassBotHw * 1.12;
     const topConeRBot = glassBotHw * 0.58;
-    const topConeH = lamp.h * 0.16;
+    const topConeH = lamp.h * 0.096;
 
-    const waistH = lamp.h * 0.008;
+    const waistH = lamp.h * 0.005;
     const waistR = topConeRBot * 0.92;
 
     const botConeRTop = waistR;
     const botConeRBot = glassBotHw * 1.18;
-    const botConeH = lamp.h * 0.155;
+    const botConeH = lamp.h * 0.093;
 
     const topConeY0 = glassBotY;
     const waistY0 = topConeY0 + topConeH;
