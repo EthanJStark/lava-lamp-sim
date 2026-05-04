@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Physics Lava Lamp Simulation</title>
+<link rel="stylesheet" href="lamp.css" />
+</head>
+<body>
+<canvas id="scene"></canvas>
+
+<section class="hud" aria-label="Lava lamp controls">
+  <h1>Physics Lava Lamp</h1>
+  <p class="note">
+    Each wax blob is a particle parcel with heat exchange, density changes,
+    buoyancy, drag, wall forces, coalescence, and splitting. The image is
+    rendered from a metaball scalar field.
+  </p>
+
+  <div class="grid">
+    <label>
+      <span class="row"><span>Heater power</span><output id="heatOut">1.00×</output></span>
+      <input id="heat" type="range" min="0.55" max="1.65" step="0.01" value="1.00">
+    </label>
+
+    <label>
+      <span class="row"><span>Fluid viscosity</span><output id="viscOut">1.00×</output></span>
+      <input id="viscosity" type="range" min="0.55" max="1.85" step="0.01" value="1.00">
+    </label>
+
+    <label>
+      <span class="row"><span>Wax parcels</span><output id="countOut">18</output></span>
+      <input id="count" type="range" min="8" max="34" step="1" value="18">
+    </label>
+
+    <div class="row">
+      <button id="pause">Pause</button>
+      <button id="reset">Reset wax</button>
+    </div>
+  </div>
+
+  <div class="stats">
+    <span id="statTemp">temp: --</span>
+    <span id="statFPS">fps: --</span>
+    <span id="statBlob">blobs: --</span>
+    <span id="statEnergy">energy: --</span>
+  </div>
+
+  <div class="hint">
+    Click or tap inside the lamp to inject a warm wax parcel.
+  </div>
+</section>
+
+<script src="lamp.js"></script>
+</body>
+</html>
